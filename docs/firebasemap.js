@@ -96,11 +96,26 @@ function initMap() {
  */
 function initFirebase(heatmap) {
 
+
     // 10 minutes before current time.
     var startTime = new Date().getTime() - (60 * 10 * 1000);
 
     // Reference to the clicks in Firebase.
     var clicks = firebase.child('clicks');
+
+    console.log("was here");
+
+    clicks.once('value',
+        function(snapshot) {
+            snapshot.forEach(function(child){
+                console.log(child.val());
+                var newPosition = child.val();
+                var point = new google.maps.LatLng(newPosition.lat, newPosition.lng);
+                heatmap.getData().push(point);
+            });
+        }
+    );
+
 
     // Listener for when a click is added.
     clicks.orderByChild('timestamp').startAt(startTime).on('child_added',
@@ -113,23 +128,23 @@ function initFirebase(heatmap) {
 
             // Add the point to  the heatmap.
             heatmap.getData().push(point);
-            var heatmapDataTest = heatmap.getData();
-            console.log(heatmapDataTest);
+
 
             // Requests entries older than expiry time (10 minutes).
             var expirySeconds = Math.max(60 * 10 * 1000 - elapsed, 0);
             // Set client timeout to remove the point after a certain time.
+            /*
             window.setTimeout(function() {
                 // Delete the old point from the database.
                 snapshot.ref().remove();
             }, expirySeconds);
+            */
         }
     );
 
     // Remove old data from the heatmap when a point is removed from firebase.
     clicks.on('child_removed', function(snapshot, prevChildKey) {
         var heatmapData = heatmap.getData();
-        console.log(heatmapData);
         var i = 0;
         while (snapshot.val().lat != heatmapData.getAt(i).lat()
         || snapshot.val().lng != heatmapData.getAt(i).lng()) {
