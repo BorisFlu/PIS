@@ -33,7 +33,7 @@ function makeInfoBox(controlDiv, map) {
     controlText.style.fontSize = '100%';
     controlText.style.padding = '6px';
     controlText.textContent = 'The map shows all clicks made in the last 10 minutes.';
-    controlUI.appendChild(controlText);
+    //controlUI.appendChild(controlText);
 }
 
 /**
