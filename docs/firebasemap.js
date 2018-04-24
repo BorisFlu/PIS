@@ -68,8 +68,8 @@ function initMap() {
 
     // Create the DIV to hold the control and call the makeInfoBox() constructor
     // passing in this DIV.
-    //var infoBoxDiv = document.createElement('div');
-    //makeInfoBox(infoBoxDiv, map);
+    var infoBoxDiv = document.createElement('div');
+    makeInfoBox(infoBoxDiv, map);
     map.controls[google.maps.ControlPosition.TOP_CENTER].push(infoBoxDiv);
 
     // Listen for clicks and add the location of the click to firebase.
