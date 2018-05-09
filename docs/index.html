@@ -15,8 +15,12 @@
 
     <!-- Custom styles for this template -->
     <link href="css/scrolling-nav.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/slideshow_style.css">
 
     <script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="vendor/slideshow_effect.js"></script>
+  </head>
 
     <style>
       #map {
@@ -89,7 +93,14 @@
         <div class="row">
           <div class="col-lg-8 mx-auto">
             <h2>Services we offer</h2>
-            <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut optio velit inventore, expedita quo laboriosam possimus ea consequatur vitae, doloribus consequuntur ex. Nemo assumenda laborum vel, labore ut velit dignissimos.</p>
+            <div>
+              <div id="slide_cont">
+                <img src="images/image1.jpg" id="slideshow_image" >
+              </div>
+              <input type="button" id="next_image" value = "Confirm">
+              <input type="button" id="prev_image" value = "Doubt">
+              <input type="hidden" id="img_no" value="0">
+            </div>
           </div>
         </div>
       </div>
